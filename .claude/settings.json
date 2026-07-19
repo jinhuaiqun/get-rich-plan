@@ -1,0 +1,41 @@
+{
+  "enabledPlugins": {
+    "nlpm@xiaolai": true
+  },
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.investopedia.com)",
+      "WebFetch(domain:marketrealist.com)",
+      "WebFetch(domain:www.fool.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:nlpm.com)",
+      "Bash(git *)",
+      "Skill(nlpm:score)",
+      "Skill(nlpm:ls)",
+      "Skill(nlpm:check)",
+      "Skill(nlpm:fix)",
+      "Skill(nlpm:test)",
+      "Skill(nlpm:trend)",
+      "Skill(nlpm:vocab-drift)",
+      "Skill(nlpm:vocab-init)",
+      "Skill(nlpm:report)",
+      "Skill(nlpm:spec-sync)",
+      "Skill(nlpm:security-scan)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/check-artifact.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
